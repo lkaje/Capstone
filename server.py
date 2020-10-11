@@ -87,7 +87,7 @@ def combine_results(txt):
                         full_list.append(new_result)
                 temp = (result[0], full_list)
         combined.append(temp)
-    return combined
+    return [word for words, word in enumerate(combined) if word not in combined[:words]] 
 
 @app.route("/")
 def get():
