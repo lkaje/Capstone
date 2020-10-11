@@ -30,28 +30,15 @@ def highlight(user_input):
 
 
 highlighted = highlight(user_input)
-#for_return = annotated_text(highlighted)
 
 if st.button('Review'):
     col1, col2 = st.beta_columns(2)
 
     with col1:
         st.header('Input')
-        st.write(highlighted, use_column_width=True)
+        annotated_text(*highlighted)
 
     with col2:
         st.header('Recommendations')
         #st.write(for_return)
-        #components.html(for_return)
-        annotated_text("This ",
-    ("is", "verb", "#8ef"),
-    " some ",
-    ("annotated", "adj", "#faa"),
-    ("text", "noun", "#afa"),
-    " for those of ",
-    ("you", "pronoun", "#fea"),
-    " who ",
-    ("like", "verb", "#8ef"),
-    " this sort of ",
-    ("thing", "noun", "#afa"),
-)
+    
