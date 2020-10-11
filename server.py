@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import os
 import gensim
+import re
 
 print('creating model')
 model = gensim.models.KeyedVectors.load_word2vec_format('./lexvec.enwiki+newscrawl.300d.W.pos.vectors')
