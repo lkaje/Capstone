@@ -1,6 +1,8 @@
 import streamlit as st
-from htbuilder import annotated_text
+#from htbuilder import annotated_text
+from annotated_text import annotated_text
 import re
+import streamlit.components.v1 as components
 
 masc = ['active', 'adventurous', 'aggress', 'ambitio', 'analy', 'assert', 'athlet', 'autonom',
 'boast', 'challeng', 'compet', 'confident', 'courag', 'dominant', 'domina', 'decide', 'decisive', 'decision',
@@ -21,22 +23,35 @@ def highlight(user_input):
             if fragment in word:
                 frag_found = True
         if frag_found == True:
-            working_list.append((word, '', '#faa'))
+            working_list.append((word, "", "#faa"))
         else:
             working_list.append(word)
     return tuple(working_list)
 
 
 highlighted = highlight(user_input)
-annotated_text(highlighted)
+#for_return = annotated_text(highlighted)
 
 if st.button('Review'):
     col1, col2 = st.beta_columns(2)
 
     with col1:
         st.header('Input')
-        st.write(annotated_text(highlighted), use_column_width=True)
+        st.write(highlighted, use_column_width=True)
 
     with col2:
         st.header('Recommendations')
-        st(annotated_text( "This ", ("is", "verb", "#8ef"), " some ", ("annotated", "adj", "#faa"), ("text", "noun", "#afa"), " for those of ", ("you", "pronoun", "#fea"), " who ", ("like", "verb", "#8ef"), " this sort of ", ("thing", "noun", "#afa")), use_column_width=True)
+        #st.write(for_return)
+        #components.html(for_return)
+        annotated_text("This ",
+    ("is", "verb", "#8ef"),
+    " some ",
+    ("annotated", "adj", "#faa"),
+    ("text", "noun", "#afa"),
+    " for those of ",
+    ("you", "pronoun", "#fea"),
+    " who ",
+    ("like", "verb", "#8ef"),
+    " this sort of ",
+    ("thing", "noun", "#afa"),
+)
