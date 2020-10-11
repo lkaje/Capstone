@@ -24,11 +24,11 @@ def validate_key(provided_key):
 
 
 
-masc = ['active', 'adventurous', 'aggress', 'ambitio', 'analy', 'assert', 'athlet', 'autonom', 'boast', 'challeng', 'compet', 'confident', 'courag', 'decide', 'decisive', 'decision', 'determin', 'force', 'greedy', 'headstrong', 'hierarch', 'hostil', 'impulsive', 'independen', 'individual', 'intellect', 'lead', 'logic', 'masculine', 'objective', 'opinion', 'outspoken', 'persist', 'principle', 'reckless', 'stubborn', 'superior', 'self-confiden', 'self-sufficien', 'self-relian', 'dominate', 'dominates', 'dominated', 'dominating']
+masc = ['active', 'adventurous', 'aggress', 'ambitio', 'analy', 'assert', 'athlet', 'autonom', 'boast', 'challeng', 'compet', 'confident', 'courag', 'decide', 'decisive', 'decision', 'determin', 'force', 'greedy', 'headstrong', 'hierarch', 'hostil', 'impulsive', 'independen', 'individual', 'intellect', 'lead', 'logic', 'masculine', 'objective', 'opinion', 'outspoken', 'persist', 'principle', 'reckless', 'stubborn', 'superior', 'self confiden', 'self sufficien', 'self relian', 'dominate', 'dominates', 'dominated', 'dominating']
 
 
 def most_similar_subjective(txt):
-    rm_punc = re.sub(r'[^\w\s]', '', txt)
+    rm_punc = re.sub(r'[^\w\s]', ' ', txt)
     txt_list = rm_punc.split()
     suggestions = []
     for word in txt_list:
@@ -42,7 +42,7 @@ def most_similar_subjective(txt):
     return suggestions
 
 def hyper_hypo_nyms(txt):
-    rm_punc = re.sub(r'[^\w\s]', '', txt)
+    rm_punc = re.sub(r'[^\w\s]', ' ', txt)
     suggestions = []
     dictionary = {}
     tokenized = sent_tokenize(rm_punc)
@@ -79,9 +79,13 @@ def combine_results(txt):
     hyper_hypo_results = hyper_hypo_nyms(txt)
     combined = []
     for result in similar_results:
+        full_list = result[1]
         for h_result in hyper_hypo_results:
             if result[0] == h_result[0]:
-                temp = (result[0], [result[1], h_result[1]])
+                for new_result in h_result[1]:
+                    if new_result not in full_list:
+                        full_list.append(new_result)
+                temp = (result[0], full_list)
         combined.append(temp)
     return combined
 
