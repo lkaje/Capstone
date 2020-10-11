@@ -73,12 +73,24 @@ def hyper_hypo_nyms(txt):
     return suggestions
 
 
+
+def combine_results(txt):
+    similar_results = most_similar_subjective(txt)
+    hyper_hypo_results = hyper_hypo_nyms(txt)
+    combined = []
+    for result in similar_results:
+        for h_result in hyper_hypo_results:
+            if result[0] == h_result[0]:
+                temp = (result[0], [result[1], h_result[1]])
+        combined.append(temp)
+    return combined
+
 @app.route("/")
 def get():
     provided_key = request.args.get('apiKey')
     if validate_key(provided_key):
         input = request.json
-        results = most_similar_subjective(input['descript'])
+        results = combine_results(input['descript'])
         return jsonify(results)
     else:
         return 'API Key Missing/Invalid'
