@@ -2,17 +2,17 @@ import streamlit as st
 from annotated_text import annotated_text
 import re
 import streamlit.components.v1 as components
-import gensim
 import re
 import nltk
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import wordnet as wn
+from subject_sim_model import model
 
 #model = None
-print('creating model')
+#print('creating model')
 #if __name__ == '__main__':
-model = gensim.models.KeyedVectors.load_word2vec_format('./lexvec.enwiki+newscrawl.300d.W.pos.vectors')
-print('model created')
+#    model = gensim.models.KeyedVectors.load_word2vec_format('./lexvec.enwiki+newscrawl.300d.W.pos.vectors')
+#print('model created')
 
 masc = ['active', 'adventurous', 'aggress', 'ambitio', 'analy', 'assert', 'athlet', 'autonom',
 'boast', 'challeng', 'compet', 'confident', 'courag', 'dominant', 'domina', 'decide', 'decisive', 'decision',
@@ -107,11 +107,11 @@ def highlight(user_input):
         if frag_found == True:
             working_list.append((word, "", "#faa"))
         else:
-            working_list.append(word)
+            working_list.append(word+' ')
     return tuple(working_list)
 
 
-user_input = st.text_area("Job Description", value='')
+user_input = st.text_area("Job Description", value='', height = 300)
 
 highlighted = highlight(user_input)
 
