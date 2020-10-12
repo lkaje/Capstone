@@ -111,6 +111,8 @@ def highlight(user_input):
     return tuple(working_list)
 
 
+st.title("recommend{her}")
+st.subheader("a tool to identify and adjust gendered language in job descriptions")
 user_input = st.text_area("Job Description", value='', height = 300)
 
 highlighted = highlight(user_input)
