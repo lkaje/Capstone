@@ -87,7 +87,13 @@ def combine_results(txt):
                         full_list.append(new_result)
                 temp = (result[0], full_list)
         combined.append(temp)
-    return [word for words, word in enumerate(combined) if word not in combined[:words]] 
+    return [word for words, word in enumerate(combined) if word not in combined[:words]]
+
+def output_dict(input_results):
+    return_dict = {}
+    for each_tuple in input_results:
+        return_dict[each_tuple[0]] = each_tuple[1]
+    return return_dict
 
 @app.route("/")
 def get():
