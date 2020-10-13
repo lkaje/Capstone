@@ -8,4 +8,6 @@ Because all of the models used were black box models, it is difficult to know ex
 
 After writing the functions into python scripts, the website was created using Streamlit, a web app builder that utilizes python. Currently, the website can handle any reasonable amount of text, and displays the list of flagged words and the recommended replacements; however, for longer postings, the input and highlighted words do not display in their entirety.   
 
-In the future, I would like to improve the website’s functionality, as well as the model accuracy. I plan to deploy the website using docker, after trying and failing to deploy it via virtual machine on Azure. I plan to expand the number of models used, particularly improving the part of speech classification and including larger training corpuses. I also plan to create a Chrome extension for recommend(her). 
+In the future, I would like to improve the website’s functionality, as well as the model accuracy. I plan to deploy the website using docker, after trying and failing to deploy it via virtual machine on Azure. I plan to expand the number of models used, particularly improving the part of speech classification and including larger training corpuses. I also plan to create a Chrome extension for recommend(her).   
+
+https://www.linkedin.com/in/lydia-kajeckas/
